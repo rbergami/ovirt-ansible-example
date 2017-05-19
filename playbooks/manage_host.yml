@@ -2,6 +2,8 @@
 - name: Setup oVirt environment
   hosts: localhost
   connection: local
+  vars_files:
+    - "../group_vars/all/vars"
   tasks:
     - block:
         - name: Include oVirt password
