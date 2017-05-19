@@ -1,0 +1,15 @@
+---
+- name: Setup oVirt environment
+  hosts: localhost
+  connection: local
+  vars_files:
+    - "../group_vars/all/vars"
+  tasks:
+    - name: Install EPEL repo.
+      yum:
+        name: "https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm"
+        state: present
+    - name: install python-ovirt-engine-sdk4-4.1.3-1.el7ev.x86_64.rpm
+      yum:
+        - name: python-ovirt-engine-sdk4
+          state: present
