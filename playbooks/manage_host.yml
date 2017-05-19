@@ -1,7 +1,6 @@
 ---
 - name: Setup oVirt environment
   hosts: ovirt
-  verbosity: 2
   tasks:
     - block:
         - name: Include oVirt password
