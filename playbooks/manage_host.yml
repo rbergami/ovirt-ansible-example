@@ -14,15 +14,12 @@
             username: "{{ username }}"
             password: "{{ password }}"
             ca_file: "{{ ca_file }}"
-
-        - name: Create datacenter
-          ovirt_datacenters:
+         
+        - name: set state of rhv host
+          ovirt_hosts:
             auth: "{{ ovirt_auth }}"
-            name: "{{ datacenter }}"
-            description: mydatacenter
-            local: false
-            compatibility_version: 4.0
-            quota_mode: disabled
+            state: "{{ rhv_host_state }}"
+            name: "{{ rhv_hostname }}"
 
       always:
         - name: Revoke the SSO token
