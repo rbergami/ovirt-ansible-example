@@ -1,6 +1,7 @@
 ---
 - name: Setup oVirt environment
-  hosts: ovirt
+  hosts: localhost
+  connection: local
   tasks:
     - block:
         - name: Include oVirt password
