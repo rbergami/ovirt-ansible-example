@@ -1,7 +1,7 @@
-[local]
+[localhost]
 localhost ansible_connection=local ansible_user=root
 
-[local:vars]
+[localhost:vars]
 username=admin@internal
 url=https://rhevldo.rdu.salab.redhat.com/ovirt-engine/api
 ca_file=/tmp/readablebytower/ovirt-ca.pem
