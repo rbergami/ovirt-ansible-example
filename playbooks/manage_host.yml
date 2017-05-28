@@ -23,6 +23,7 @@
             auth: "{{ ovirt_auth }}"
             state: "{{ rhv_host_state }}"
             name: "{{ rhv_hostname }}"
+            wait: true
 
       always:
         - name: Revoke the SSO token
