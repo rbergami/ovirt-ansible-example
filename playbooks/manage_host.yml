@@ -5,6 +5,7 @@
   vars_files:
     - "../group_vars/all/vars"
   tasks:
+    - debug: var=manageiq
     - debug: var=manageiq.api_url
     - debug: var=manageiq.api_token
     - debug: var=manageiq.service
