@@ -25,6 +25,10 @@
             name: "{{ rhv_hostname }}"
             wait: true
 
+        - name: log manageiq object
+          debug: var=manageiq
+          when: manageiq is defined
+
       always:
         - name: Revoke the SSO token
           ovirt_auth:
