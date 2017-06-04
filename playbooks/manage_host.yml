@@ -12,6 +12,13 @@
     - debug: var=manageiq.event_target
 
     - block:
+        - name: initialize emtpy string for play history
+          set_fact:
+            play_history: []
+
+        - name: running the RHV playbook
+          set_fact:
+            rhv_play: "Running RHV maintenance play and putting host in"
 
         - name: Include oVirt password
           no_log: true
@@ -32,9 +39,13 @@
             name: "{{ rhv_hostname }}"
             wait: true
 
+        - name: appending the history
+          set_fact:
+            play_history: "{{ play_history }}" + [ '{{ rhv_host_state }}' ]"
+
         - name: update service
           #command: curl -H "X-Auth-Token{{":"}} {{ manageiq.api_token }}" -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "i just killed rhv"}}' Content-Type{{":"}} application/json -X POST https://cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
-          command: curl -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "Action was set to {{rhv_host_state}}"}}' Content-Type{{":"}} application/json -X POST https{{":"}}//admin{{":"}}smartvm@cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
+          command: curl -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "{{play_history}}"}}' Content-Type{{":"}} application/json -X POST https{{":"}}//admin{{":"}}smartvm@cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
           register: curlreq
 
         - debug: var=curlreq
