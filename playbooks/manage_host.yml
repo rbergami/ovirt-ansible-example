@@ -33,6 +33,9 @@
         
         - name: update service
           command: curl -H "Authorization{{":"}} Token {{ manageiq.api_token }}" -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "i just killed rhv"}}' Content-Type{{":"}} application/json -X POST https://cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
+          register: curlreq
+
+        - debug: var=curlreq
 
 
 
