@@ -31,8 +31,8 @@
             state: "{{ rhv_host_state }}"
             name: "{{ rhv_hostname }}"
             wait: true
-            register: rhvout
-            debug: var=rhvout
+          register: rhvout
+          debug: var=rhvout
 
         - name: update service
           #command: curl -H "X-Auth-Token{{":"}} {{ manageiq.api_token }}" -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "i just killed rhv"}}' Content-Type{{":"}} application/json -X POST https://cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
