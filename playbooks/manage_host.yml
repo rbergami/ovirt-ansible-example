@@ -52,10 +52,14 @@
 
         - name: update service description
           uri:
-            url: "https://cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}"
+            url: "{{ manageiq.api_url }}/api/{{ manageiq.service }}"
             method: POST
             body_format: json
-            body: "{{ lookup('template','../templates/updateservice.json.j2') | to_json }}"
+            body:
+              action: edit
+              resource: {
+    "description": "adsfasdfasdfadsfasfasdfasdfasdfasdfasdfasdfasdfasfasdfasdfasdfasdfasdfasdfasdfasdfA Description for the new Service"
+  }
             validate_certs: False
             headers:
               X-Auth-Token: "{{ manageiq.api_token }}"
