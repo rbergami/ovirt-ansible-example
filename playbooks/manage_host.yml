@@ -14,7 +14,7 @@
     - block:
         - name: initialize emtpy string for play history
           set_fact:
-            play_history: "Running RHV maintenance play and putting host in"
+            play_history: "Running RHV maintenance play and setting host"
 
         - name: Include oVirt password
           no_log: true
@@ -37,7 +37,7 @@
 
         - name: appending the history
           set_fact:
-            play_history: "{{ play_history }} {{ rhv_host_state }}"
+            play_history: "{{ play_history }} {{ rhv_hostname }}"
 
         - name: appending the history
           set_fact:
