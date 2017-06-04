@@ -55,7 +55,7 @@
             url: "https://cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}"
             method: POST
             body_format: json
-            body: "{{ lookup('template','updateservice.json.j2') | to_json }}"
+            body: "{{ lookup('template','../templates/updateservice.json.j2') | to_json }}"
             validate_certs: False
             headers:
               X-Auth-Token: "{{ manageiq.api_token }}"
