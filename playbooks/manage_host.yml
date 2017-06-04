@@ -30,6 +30,10 @@
             state: "{{ rhv_host_state }}"
             name: "{{ rhv_hostname }}"
             wait: true
+        
+       - name: update service
+         command: curl -H {{ manageiq.api_token }} -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "i just killed rhv"}}' Content-Type{{":"}} application/json -X POST https://cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
+
 
 
       always:
