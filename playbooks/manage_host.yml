@@ -37,7 +37,11 @@
 
         - name: appending the history
           set_fact:
-            play_history: "{{ play_history }} + {{ rhv_host_state }}"
+            play_history: "{{ play_history }} {{ rhv_host_state }}"
+
+        - name: appending the history
+          set_fact:
+            play_history: "{{ play_history }} {{ rhv_host_state }} {{ rhv_hostname }} "
 
         - name: update service
           #command: curl -H "X-Auth-Token{{":"}} {{ manageiq.api_token }}" -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "i just killed rhv"}}' Content-Type{{":"}} application/json -X POST https://cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
