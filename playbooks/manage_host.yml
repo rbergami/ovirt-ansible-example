@@ -13,8 +13,8 @@
 
     - block:
 
-        - name: set whats happening
-          set_fact: flow="['playbook history']"
+        - set_fact: flow="['playbook history']"
+
         - name: Include oVirt password
           no_log: true
           include_vars: ovirt_password.yml
@@ -35,7 +35,7 @@
             wait: true
 
 
-          set_fact: flow="{{flow}} + ['RHV host was set to state {{ rhv_host_state }}']"
+        - set_fact: flow="{{flow}} + ['RHV host was set to state {{ rhv_host_state }}']"
 
         - name: update service
           #command: curl -H "X-Auth-Token{{":"}} {{ manageiq.api_token }}" -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "i just killed rhv"}}' Content-Type{{":"}} application/json -X POST https://cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
