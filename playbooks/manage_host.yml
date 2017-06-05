@@ -45,7 +45,7 @@
 
         - name: update service
           #command: curl -H "X-Auth-Token{{":"}} {{ manageiq.api_token }}" -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "i just killed rhv"}}' Content-Type{{":"}} application/json -X POST https://cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
-          command: curl -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "{{play_history}}"}}' Content-Type{{":"}} application/json -X POST https{{":"}}//admin{{":"}}smartvm@cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
+          command: curl -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "{{play_history}}"}}' Content-Type{{":"}} application/json -X POST https{{":"}}//admin{{":"}}smartvm@{{ manageiq.api_url}}/api/{{ manageiq.service }}
           register: curlreq
 
         - debug: var=curlreq
@@ -57,9 +57,7 @@
             body_format: json
             body:
               action: edit
-              resource: {
-    "description": "adsfasdfasdfadsfasfasdfasdfasdfasdfasdfasdfasdfasfasdfasdfasdfasdfasdfasdfasdfasdfA Description for the new Service"
-  }
+              resource: { "description": "adsfasdfasdfadsfasfasdfasdfasdfasdfasdfasdfasdfasfasdfasdfasdfasdfasdfasdfasdfasdfA Description for the new Service"}
             validate_certs: False
             headers:
               X-Auth-Token: "{{ manageiq.api_token }}"
