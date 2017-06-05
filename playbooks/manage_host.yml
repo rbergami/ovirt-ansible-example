@@ -51,8 +51,9 @@
             #- debug: var=curlreq
 
         - name: update service via uri
+          #url: "{{ manageiq.api_url}}/api/{{ manageiq.service }}"
           uri:
-            url: "{{ manageiq.api_url}}/api/{{ manageiq.service }}"
+            url: "https://10.11.164.225/api/{{ manageiq.service }}"
             method: POST
             body_format: json
             body:
