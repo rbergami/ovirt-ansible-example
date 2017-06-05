@@ -45,25 +45,25 @@
 
             #- name: update service
           #command: curl -H "X-Auth-Token{{":"}} {{ manageiq.api_token }}" -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "i just killed rhv"}}' Content-Type{{":"}} application/json -X POST https://cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
-          #command: curl -u admin{{":"}}smartvm -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "{{play_history}}"}}' -H "Accept{{":"}} application/json" -X POST {{ manageiq.api_url}}/api/{{ manageiq.service }}
+          command: curl -u admin{{":"}}smartvm -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "{{play_history}}"}}' -H "Accept{{":"}} application/json" -X POST {{ manageiq.api_url}}/api/{{ manageiq.service }}
           #command: curl -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "{{play_history}}"}}' -H "Accept{{":"}} application/json" -H "X-Auth-Token{{":"}}{{ manageiq.api_token }}" -X POST {{ manageiq.api_url}}/api/{{ manageiq.service }}
           #register: curlreq
 
           #- debug: var=curlreq
 
-        - name: Register vms with the service
-          uri:
-            url: "{{ manageiq.api_url }}/api/{{ manageiq.service }}"
-            method: POST
-            body_format: json
-            body:
-              action: edit
-              resource : { description: "testme now"}
-            validate_certs: False
-            headers:
-              X-Auth-Token: "{{ manageiq.api_token }}"
-              Content-Type: "application/json"
-            status_code: 200
+            #        - name: update service description (works only on single appliance)
+            #          uri:
+            #            url: "{{ manageiq.api_url }}/api/{{ manageiq.service }}"
+            #            method: POST
+            #            body_format: json
+            #            body:
+            #              action: edit
+            #              resource : { description: "testme now"}
+            #            validate_certs: False
+            #            headers:
+            #              X-Auth-Token: "{{ manageiq.api_token }}"
+            #              Content-Type: "application/json"
+            #            status_code: 200
 
 
       always:
