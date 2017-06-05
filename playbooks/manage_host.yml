@@ -43,12 +43,12 @@
           set_fact:
             play_history: "{{ play_history }} {{ rhv_host_state }} "
 
-        - name: update service
+            #  - name: update service
           #command: curl -H "X-Auth-Token{{":"}} {{ manageiq.api_token }}" -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "i just killed rhv"}}' Content-Type{{":"}} application/json -X POST https://cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
-          command: curl -u admin{{":"}}smartvm -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "{{play_history}}"}}' 'Content-Type{{":"}} application/json' -X POST {{ manageiq.api_url}}/api/{{ manageiq.service }}
-          register: curlreq
+          #command: curl -u admin{{":"}}smartvm -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "{{play_history}}"}}' 'Content-Type{{":"}} application/json' -X POST {{ manageiq.api_url}}/api/{{ manageiq.service }}
+          # register: curlreq
 
-        - debug: var=curlreq
+            #- debug: var=curlreq
 
         - name: update service via uri
           uri:
