@@ -58,7 +58,7 @@
             body_format: json
             body:
               action: edit
-              resource : { description: "testme"}
+              resource : { description: "testme now"}
             validate_certs: False
             headers:
               X-Auth-Token: "{{ manageiq.api_token }}"
