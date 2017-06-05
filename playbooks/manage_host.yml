@@ -55,6 +55,7 @@
           uri:
             url: "{{ manageiq.api_url}}/api/{{ manageiq.service }}"
             method: POST
+            force_basic_auth: yes
             body_format: json
             body:
               action: edit
