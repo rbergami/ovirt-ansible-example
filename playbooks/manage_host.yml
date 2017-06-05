@@ -45,8 +45,8 @@
 
         - name: update service
           #command: curl -H "X-Auth-Token{{":"}} {{ manageiq.api_token }}" -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "i just killed rhv"}}' Content-Type{{":"}} application/json -X POST https://cfmeldo1.rdu.salab.redhat.com/api/{{ manageiq.service }}
-          command: curl -u admin{{":"}}smartvm -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "{{play_history}}"}}' -H "Accept{{":"}} application/json" -X POST {{ manageiq.api_url}}/api/{{ manageiq.service }}
-          #command: curl -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "{{play_history}}"}}' -H "Accept{{":"}} application/json" -H "X-Auth-Token{{":"}}{{ manageiq.api_token }}" -X POST {{ manageiq.api_url}}/api/{{ manageiq.service }}
+          #command: curl -u admin{{":"}}smartvm -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "{{play_history}}"}}' -H "Accept{{":"}} application/json" -X POST {{ manageiq.api_url}}/api/{{ manageiq.service }}
+          command: curl -k -d '{"action"{{":"}} "edit","resource"{{":"}} {"description"{{":"}} "{{play_history}}"}}' -H "Accept{{":"}} application/json" -H "X-Auth-Token{{":"}}{{ manageiq.api_token }}" -X POST {{ manageiq.api_url}}/api/{{ manageiq.service }}
           register: curlreq
 
         - debug: var=curlreq
@@ -55,20 +55,18 @@
           uri:
             url: "{{ manageiq.api_url}}/api/{{ manageiq.service }}"
             method: POST
-            force_basic_auth: yes
             body_format: json
             body:
               action: edit
               resources : { description: "adsfasdfasdfadsfasfasdfasdfasdfasdfasdfasdfasdfasfasdfasdfasdfasdfasdfasdfasdfasdfA Description for the new Service"}
             validate_certs: False
             headers:
+              X-Auth-Token: "{{ manageiq.api_token }}"
               Content-Type: "application/json"
             status_code: 200
-            username: admin
-            password: smartvm
           register: output
 
-        - debug: var=output.json.results[0].success
+        - debug: var=output
 
       always:
         - name: Revoke the SSO token
