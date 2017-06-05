@@ -58,7 +58,7 @@
             body_format: json
             body:
               action: edit
-              resources : {description: "{{play_history}}" }
+              resources : {description: "testme" }
             validate_certs: False
             headers:
               X-Auth-Token: "{{ manageiq.api_token }}"
