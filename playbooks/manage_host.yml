@@ -17,7 +17,7 @@
             play_history: "Running RHV maintenance play and setting host"
 
         - name: Include oVirt password
-          no_log: true
+          no_log: false
           include_vars: ovirt_password.yml
 
         - name: Obtain SSO token
