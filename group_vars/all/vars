@@ -6,6 +6,7 @@ external_provider: rhvm
 datacenter: Default
 cluster: Default
 host: rhv
+rhv_hostname: rhv
 host_address: 192.168.210.160
 data_name: nuc01vms
 iscsi_name: data2
