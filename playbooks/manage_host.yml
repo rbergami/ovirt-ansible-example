@@ -16,16 +16,12 @@
           set_fact:
             play_history: "Running RHV maintenance play and setting host"
 
-        - name: Include oVirt password
-          no_log: false
-          include_vars: ovirt_password.yml
-
         - name: Obtain SSO token
           no_log: false
           ovirt_auth:
             url: "{{ url }}"
             username: "{{ username }}"
-            password: "{{ password }}"
+            password: "password"
             ca_file: "{{ ca_file }}"
          
         - name: set state of rhv host
